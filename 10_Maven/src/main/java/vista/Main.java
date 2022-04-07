@@ -2,6 +2,7 @@ package vista;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -139,7 +140,17 @@ public class Main {
 				break;
 				
 			case 10:
-				
+				List<Coche> coches1 = gp.listar();
+				if(coches1!=null) {
+					try {
+						gp.creaFicheroJson();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else {
+					System.out.println("No existe ningún coche");
+				}
 				System.out.println("Exportado JSON");
 				break;
 			case 11:
@@ -173,7 +184,7 @@ public class Main {
 		System.out.println("8- listar todos los coches");
 		System.out.println("9- Salir del programa");
 		System.out.println("10 - Exportar los coches a un fichero en formato JSON");
-		System.out.println("11 - Exportar los coches a un fichero excel/PDF");
+		System.out.println("11 - Exportar los coches a un fichero PDF");
 	}
 
 }

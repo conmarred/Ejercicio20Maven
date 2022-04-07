@@ -2,8 +2,11 @@ package modelo.negocio;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -72,7 +75,8 @@ public class GestorCoche {
 		return listaModelo;
 	}
 	
-	public void creaFicheroPDF() {Document doc = new Document();
+	public void creaFicheroPDF() {
+	Document doc = new Document();
 	List<Coche> coches = daoCoche.listar();
 	PdfWriter pdfw = null;
 	try {
@@ -98,6 +102,26 @@ public class GestorCoche {
 	}
 	doc.close();
 		
+	}
+	
+	public void creaFicheroJson() throws IOException {
+		JsonFactory factoria= new JsonFactory();
+        JsonGenerator generator= factoria.createGenerator(new FileOutputStream("../10_Maven/documentos/coches.json"));
+        List<Coche> coches = daoCoche.listar();
+        generator.writeStartArray();
+        for(Coche c: coches) {
+        	generator.writeStartObject();
+            generator.writeNumberField("id", c.getId());
+            generator.writeStringField("matricula", c.getMatricula());
+            generator.writeStringField("marca", c.getMarca());
+            generator.writeStringField("modelo", c.getModelo());
+            generator.writeNumberField("numeroKilometros", c.getKilometros());
+            generator.writeEndObject();
+            
+        }
+        generator.writeEndArray();
+        generator.flush();
+        
 	}
 	
 	
