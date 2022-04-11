@@ -3,5 +3,9 @@
     <fullyQualifiedTypeName name="com.itextpdf.text.Document"/>
     <fullyQualifiedTypeName name="com.itextpdf.text.Paragraph"/>
     <fullyQualifiedTypeName name="com.itextpdf.text.pdf.PdfWriter"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.core.JsonFactory"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.core.JsonGenerator"/>
     <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="modelo.negocio.GestorCoche"/>
+    <fullyQualifiedTypeName name="modelo.entidad.Coche"/>
 </qualifiedTypeNameHistroy>
